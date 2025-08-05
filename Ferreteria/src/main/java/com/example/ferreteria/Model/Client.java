@@ -1,4 +1,4 @@
-package Model;
+package com.example.ferreteria.Model;
 
 
 import jakarta.persistence.*;
@@ -10,18 +10,18 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private long id;
+    private Long client_id;
     private String name;
     private String phone;
     private String address;
     private String email;
 
-    public long getId() {
-        return id;
+    public Long getClient_id() {
+        return client_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setClient_id(Long client_id) {
+        this.client_id = client_id;
     }
 
     public String getName() {
