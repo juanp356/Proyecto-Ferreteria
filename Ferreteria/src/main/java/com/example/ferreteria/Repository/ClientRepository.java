@@ -1,6 +1,6 @@
-package Repository;
+package com.example.ferreteria.Repository;
 
-import Model.Client;
+import com.example.ferreteria.Model.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
