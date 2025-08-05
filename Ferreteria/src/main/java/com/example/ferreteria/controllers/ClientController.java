@@ -1,7 +1,7 @@
-package controllers;
+package com.example.ferreteria.controllers;
 
-import Model.Client;
-import Repository.ClientRepository;
+import com.example.ferreteria.Repository.ClientRepository;
+import com.example.ferreteria.Model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class ClientController {
 
     @Autowired
-    private ClientRepository clientRepository;
+   private ClientRepository clientRepository;
 
     @GetMapping
     public List<Client> getAll()
@@ -35,7 +35,7 @@ public class ClientController {
     @PostMapping("/{id}")
     public Client update(@PathVariable Long id, @RequestBody Client client)
     {
-        client.setId(id);
+        client.setClient_id(id);
         return clientRepository.save(client);
     }
 

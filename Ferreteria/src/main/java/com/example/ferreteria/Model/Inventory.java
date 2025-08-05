@@ -1,4 +1,4 @@
-package Model;
+package com.example.ferreteria.Model;
 import jakarta.persistence.*;
 
 @Entity
