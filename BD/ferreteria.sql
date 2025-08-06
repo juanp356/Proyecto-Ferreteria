@@ -113,15 +113,9 @@ CREATE TABLE IF NOT EXISTS `proceeds` (
 -- Volcando estructura para tabla ferreteria.supplier
 CREATE TABLE IF NOT EXISTS `supplier` (
   `supplier_id` bigint NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `phone` varchar(20) NOT NULL DEFAULT '0',
   `email` varchar(100) NOT NULL DEFAULT '0',
-  `category` varchar(255) DEFAULT NULL,
-  `contact` varchar(255) DEFAULT NULL,
-  `price` varchar(255) DEFAULT NULL,
-  `products_supplied` varchar(255) DEFAULT NULL,
-  `charge` varchar(255) DEFAULT NULL,
-  `salary` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`supplier_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
