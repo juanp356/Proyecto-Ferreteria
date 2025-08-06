@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "vending")
 
 public class Vending {
+
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -54,4 +55,5 @@ public class Vending {
     public void setEmployee_id(String employee_id) {
         this.employee_id = employee_id;
     }
+
 }
