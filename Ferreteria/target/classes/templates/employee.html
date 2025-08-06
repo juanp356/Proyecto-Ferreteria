@@ -15,9 +15,9 @@
         <h1 class="text-3xl font-bold">Empleados</h1>
 
         <!-- Botón Agregar Cliente -->
-        <a href="/vistaC/form"
+        <a href="/vistaE/form"
            class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full shadow text-sm font-medium transition">
-            <i class="fas fa-plus"></i> Agregar Empleados
+            <i class="fas fa-plus"></i> Agregar Empleado
         </a>
     </div>
 
@@ -32,7 +32,7 @@
                     id="searchInput"
                     placeholder="Buscar empleados..."
                     class="pl-10 w-full p-3 rounded-md border border-gray-300 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    onkeyup="filtrarClientes()"
+                    onkeyup="filterEmployee()"
             />
         </div>
     </div>
@@ -46,21 +46,23 @@
                 <th class="px-4 py-3">Nombre</th>
                 <th class="px-4 py-3">Cargo</th>
                 <th class="px-4 py-3">Salario</th>
+                <th class="px-4 py-3">Role</th>
                 <th class="px-4 py-3 text-center">Acciones</th>
             </tr>
             </thead>
-            <tbody id="empleadosTabla" class="bg-white divide-y divide-gray-100">
-            <tr th:each="client : ${client}" class="hover:bg-gray-50">
+            <tbody id="employeeTable" class="bg-white divide-y divide-gray-100">
+            <tr th:each="employee : ${employees}" class="hover:bg-gray-50">
                 <td class="px-4 py-3" th:text="${employee.employee_id}"></td>
                 <td class="px-4 py-3" th:text="${employee.name}"></td>
-                <td class="px-4 py-3" th:text="${empployee.salary}"></td>
-                <td class="px-4 py-3" th:text="${employee.post}"></td>
+                <td class="px-4 py-3" th:text="${employee.workload}"></td>
+                <td class="px-4 py-3" th:text="${employee.pay}"></td>
+                <td class="px-4 py-3" th:text="${employee.role}"></td>
                 <td class="px-4 py-3 text-center whitespace-nowrap">
-                    <a th:href="@{/vistaC/edit/{id}(id=${employee.employee_id})}"
+                    <a th:href="@{/vistaE/edit/{id}(id=${employee.employee_id})}"
                        class="inline-flex items-center px-3 py-1 text-sm text-blue-600 border border-blue-600 rounded-full hover:bg-blue-100 transition">
                         <i class="fas fa-edit mr-1"></i> Editar
                     </a>
-                    <form th:action="@{/vistaC/delete/{id}(id=${employee.employee_id})}" method="post" class="inline delete-form">
+                    <form th:action="@{/vistaE/delete/{id}(id=${employee.employee_id})}" method="post" class="inline delete-form">
                         <button type="submit"
                                 class="inline-flex items-center px-3 py-1 text-sm text-red-600 border border-red-600 rounded-full hover:bg-red-100 transition ml-2">
                             <i class="fas fa-trash-alt mr-1"></i> Eliminar
@@ -73,20 +75,7 @@
     </div>
 </div>
 
-<!-- Script para filtrar -->
-<script>
-    function filtrarClientes() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const filas = document.querySelectorAll("#clientesTabla tr");
 
-      filas.forEach(fila => {
-        const columnas = fila.querySelectorAll("td");
-        const id = columnas[0]?.textContent?.toLowerCase() || "";
-        const nombre = columnas[1]?.textContent?.toLowerCase() || "";
-        fila.style.display = id.includes(input) || nombre.includes(input) ? "" : "none";
-      });
-    }
-</script>
 
 <div id="swalSuccess" th:if="${success}" th:data-msg="${success}" class="hidden"></div>
 
