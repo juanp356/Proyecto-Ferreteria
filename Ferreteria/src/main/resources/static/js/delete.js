@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             Swal.fire({
                 title: '¿Estás seguro?',
-                text: 'Esta acción eliminará el cliente de forma permanente.',
+                text: 'Esta acción eliminará este registro de forma permanente.',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
