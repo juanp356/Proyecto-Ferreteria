@@ -38,27 +38,43 @@ CREATE TABLE IF NOT EXISTS `buy_orderliness` (
 
 -- Volcando estructura para tabla ferreteria.client
 CREATE TABLE IF NOT EXISTS `client` (
-  `client_id` bigint NOT NULL  AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL DEFAULT '0',
-  `phone` varchar(20) NOT NULL DEFAULT '0',
-  `address` varchar(50) NOT NULL DEFAULT '0',
-  `email` varchar(100) NOT NULL DEFAULT '0',
+  `client_id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`client_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla ferreteria.client: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla ferreteria.client: ~10 rows (aproximadamente)
+INSERT INTO `client` (`client_id`, `name`, `phone`, `address`, `email`) VALUES
+	(6, 'Arnulfo ', '543543543', 'cra 22 a 25 a 07', 'arnulfo567654@gmail.com'),
+	(7, 'Jairo Sanchez', '321234235243', 'cra 9 # 50-20', 'jairo67464@gmail.com'),
+	(8, 'Jhon Pineda', '35345643', 'cra 50 # 80-67', 'jhon987@gmail.com'),
+	(9, 'Carlos espinoza ', '9898989888', 'cra 89 # 50-20', 'espinoza46546@gmail.com'),
+	(10, 'Nestor Perea', '877546356798', 'Calle 99 # 98 76', 'perea423@gmail.com'),
+	(18, 'hybgy8gynbg', '34556776', 'gethytjukuj', '32fgefthtyjytrgf@gmail.com'),
+	(19, 'una persona', '5436554674', '23454367547', 'fwrdtg@gmail.com'),
+	(20, 'alguien', '12321543', 'fewrtyerye', 'rwgyetyh@gmail.com'),
+	(22, 'Juan Pablo ', '98767', 'iguoiufghou', 'juan@gmail.com');
 
 -- Volcando estructura para tabla ferreteria.employee
 CREATE TABLE IF NOT EXISTS `employee` (
   `employee_id` bigint NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL DEFAULT '0',
-  `load` varchar(50) NOT NULL DEFAULT '0',
-  `pay` decimal(10,2) NOT NULL DEFAULT (0),
-  `role` varchar(20) NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `workload` varchar(255) DEFAULT NULL,
+  `pay` int NOT NULL DEFAULT (0),
+  `role` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`employee_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla ferreteria.employee: ~0 rows (aproximadamente)
+INSERT INTO `employee` (`employee_id`, `name`, `workload`, `pay`, `role`) VALUES
+	(1, 'Cualquier cosa', 'Ventas', 1000000, 'ADMINISTRADOR'),
+	(3, 'ewtgrehteh', 'vfsbfdbhgrn', 0, 'EMPLEADO'),
+	(4, 'gtrhtyjt', 'erthnyjuj', 0, 'EMPLEADO'),
+	(5, 'fgfhgrhgrh', 'gebghbgrh', 32453676, 'EMPLEADO'),
+	(6, 'Juan Pablo', 'Ventas', 1527280, 'EMPLEADO');
 
 -- Volcando estructura para tabla ferreteria.orderliness_detail
 CREATE TABLE IF NOT EXISTS `orderliness_detail` (
@@ -96,9 +112,15 @@ CREATE TABLE IF NOT EXISTS `proceeds` (
 -- Volcando estructura para tabla ferreteria.supplier
 CREATE TABLE IF NOT EXISTS `supplier` (
   `supplier_id` bigint NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL DEFAULT '0',
+  `name` varchar(255) DEFAULT NULL,
   `phone` varchar(20) NOT NULL DEFAULT '0',
   `email` varchar(100) NOT NULL DEFAULT '0',
+  `category` varchar(255) DEFAULT NULL,
+  `contact` varchar(255) DEFAULT NULL,
+  `price` varchar(255) DEFAULT NULL,
+  `products_supplied` varchar(255) DEFAULT NULL,
+  `charge` varchar(255) DEFAULT NULL,
+  `salary` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`supplier_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
