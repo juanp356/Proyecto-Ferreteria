@@ -12,9 +12,9 @@ public class Inventory {
     private long id;
     private String name;
     private String category;
-    private String contact;
     private String price;
-    private String products_supplied;
+    private String quantity;
+    private String min_stock;
 
     public long getId() {
         return id;
@@ -40,14 +40,6 @@ public class Inventory {
         this.category = category;
     }
 
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
     public String getPrice() {
         return price;
     }
@@ -56,11 +48,19 @@ public class Inventory {
         this.price = price;
     }
 
-    public String getProducts_supplied() {
-        return products_supplied;
+    public String getQuantity() {
+        return quantity;
     }
 
-    public void setProducts_supplied(String products_supplied) {
-        this.products_supplied = products_supplied;
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getMin_stock() {
+        return min_stock;
+    }
+
+    public void setMin_stock(String min_stock) {
+        this.min_stock = min_stock;
     }
 }
