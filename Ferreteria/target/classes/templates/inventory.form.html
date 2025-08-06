@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>inventarios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-10">
+
+<h1 class="text-3xl font-bold mb-8" th:text="${mode == 'editar'} ? 'Editar Producto' : 'Agregar Producto'">Agregar Producto</h1>
+
+<form th:action="@{/vistaE/save}" th:object="${inventory}" method="post"  class="space-y-6 max-w-2xl">
+    <!-- ID oculto -->
+    <input type="hidden" th:field="*{inventory_id}"  required/>
+
+    <!-- Nombre -->
+    <div>
+        <label class="block font-semibold mb-1">Nombre</label>
+        <input type="text" th:field="*{name}" placeholder="Ingrese el nombre"
+               class="w-full bg-gray-200 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500" required/>
+    </div>
+
+    <!-- Categoria -->
+    <div>
+        <label class="block font-semibold mb-1">Categoria</label>
+        <input type="text" th:field="*{category}" placeholder="Ingrese la categoria"
+               class="w-full bg-gray-200 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500" required/>
+    </div>
+
+    <!-- Price -->
+    <div>
+        <label class="block font-semibold mb-1">Precio</label>
+        <input type="text" th:field="*{price}" placeholder="Ingrese el precio"
+               class="w-full bg-gray-200 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500" required/>
+    </div>
+
+    <!-- Quatity -->
+    <div>
+        <label class="block font-semibold mb-1">Cantidad</label>
+        <input type="text" th:field="*{quantity}" placeholder="Ingrese la cantidad"
+               class="w-full bg-gray-200 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500" required/>
+    </div>
+
+    </div>
+
+    <div class="absolute right-[60px] bottom-[10px] flex gap-4">
+        <div class="absolute right-[60px] bottom-[10px] flex gap-4">
+            <a th:href="@{/vista/employee}" class="bg-gray-300 hover:bg-gray-400 text-black font-semibold py-2 px-6 rounded-full">
+                Volver
+            </a>
+            <button type="submit"
+                    th:text="${mode == 'editar'} ? 'Actualizar' : 'Guardar'"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full">
+                Guardar
+            </button>
+        </div>
+    </div>
+
+</form>
+
+</body>
+</html>
