@@ -13,7 +13,7 @@ public class Employee {
     private Long employee_id;
     private String name;
     private String workload;
-    private double pay;
+    private int pay;
     private String role;
 
     public Long getEmployee_id() {
@@ -40,11 +40,11 @@ public class Employee {
         this.workload = workload;
     }
 
-    public double getPay() {
+    public int getPay() {
         return pay;
     }
 
-    public void setPay(double pay) {
+    public void setPay(int pay) {
         this.pay = pay;
     }
 
