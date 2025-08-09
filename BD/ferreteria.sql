@@ -22,7 +22,7 @@ USE `ferreteria`;
 -- Volcando estructura para tabla ferreteria.buy_orderliness
 CREATE TABLE IF NOT EXISTS `buy_orderliness` (
   `orderliness_id` bigint NOT NULL AUTO_INCREMENT,
-  `total_amount` decimal(10,2) NOT NULL DEFAULT (0),
+  `total_amount` int NOT NULL DEFAULT (0),
   `status` varchar(15) NOT NULL DEFAULT '0',
   `orderliness_date` date NOT NULL,
   `client_id` bigint NOT NULL DEFAULT (0),
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   PRIMARY KEY (`client_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla ferreteria.client: ~10 rows (aproximadamente)
+-- Volcando datos para la tabla ferreteria.client: ~9 rows (aproximadamente)
 INSERT INTO `client` (`client_id`, `name`, `phone`, `address`, `email`) VALUES
 	(6, 'Arnulfo ', '543543543', 'cra 22 a 25 a 07', 'arnulfo567654@gmail.com'),
 	(7, 'Jairo Sanchez', '321234235243', 'cra 9 # 50-20', 'jairo67464@gmail.com'),
@@ -66,22 +66,23 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `pay` int NOT NULL DEFAULT (0),
   `role` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla ferreteria.employee: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla ferreteria.employee: ~6 rows (aproximadamente)
 INSERT INTO `employee` (`employee_id`, `name`, `workload`, `pay`, `role`) VALUES
 	(1, 'Cualquier cosa', 'Ventas', 1000000, 'ADMINISTRADOR'),
 	(3, 'ewtgrehteh', 'vfsbfdbhgrn', 0, 'EMPLEADO'),
 	(4, 'gtrhtyjt', 'erthnyjuj', 0, 'EMPLEADO'),
 	(5, 'fgfhgrhgrh', 'gebghbgrh', 32453676, 'EMPLEADO'),
-	(6, 'Juan Pablo', 'Ventas', 1527280, 'EMPLEADO');
+	(6, 'Juan Pablo', 'Ventas', 1527280, 'EMPLEADO'),
+	(7, 'Pedro Ramirez', 'Ventas', 1000000, 'EMPLEADO');
 
 -- Volcando estructura para tabla ferreteria.orderliness_detail
 CREATE TABLE IF NOT EXISTS `orderliness_detail` (
   `detail_id` bigint NOT NULL AUTO_INCREMENT,
   `quantity` int NOT NULL DEFAULT (0),
-  `unit_price` decimal(10,2) NOT NULL DEFAULT (0),
-  `subtotal` decimal(10,2) NOT NULL DEFAULT (0),
+  `unit_price` int NOT NULL DEFAULT (0),
+  `subtotal` int NOT NULL DEFAULT (0),
   `orderliness_id` bigint NOT NULL DEFAULT (0),
   `proceeds_id` bigint NOT NULL DEFAULT (0),
   PRIMARY KEY (`detail_id`),
@@ -98,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `proceeds` (
   `proceeds_id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL DEFAULT '0',
   `category` varchar(50) NOT NULL DEFAULT '0',
-  `price` decimal(10,2) NOT NULL DEFAULT (0),
+  `price` int NOT NULL DEFAULT (0),
   `quantity` int NOT NULL DEFAULT (0),
   `min_stock` int NOT NULL DEFAULT (0),
   `supplier_id` bigint NOT NULL,
@@ -112,15 +113,9 @@ CREATE TABLE IF NOT EXISTS `proceeds` (
 -- Volcando estructura para tabla ferreteria.supplier
 CREATE TABLE IF NOT EXISTS `supplier` (
   `supplier_id` bigint NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `phone` varchar(20) NOT NULL DEFAULT '0',
   `email` varchar(100) NOT NULL DEFAULT '0',
-  `category` varchar(255) DEFAULT NULL,
-  `contact` varchar(255) DEFAULT NULL,
-  `price` varchar(255) DEFAULT NULL,
-  `products_supplied` varchar(255) DEFAULT NULL,
-  `charge` varchar(255) DEFAULT NULL,
-  `salary` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`supplier_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -129,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `supplier` (
 -- Volcando estructura para tabla ferreteria.vending
 CREATE TABLE IF NOT EXISTS `vending` (
   `vending_id` bigint NOT NULL AUTO_INCREMENT,
-  `total_amount` decimal(10,2) NOT NULL DEFAULT (0),
+  `total_amount` int NOT NULL DEFAULT (0),
   `vending_date` datetime NOT NULL DEFAULT (0),
   `client_id` bigint NOT NULL DEFAULT (0),
   `employee_id` bigint NOT NULL DEFAULT (0),
@@ -146,8 +141,8 @@ CREATE TABLE IF NOT EXISTS `vending` (
 CREATE TABLE IF NOT EXISTS `vending_detail` (
   `vdetail_id` bigint NOT NULL AUTO_INCREMENT,
   `quantity` int NOT NULL DEFAULT (0),
-  `unit_price` decimal(10,2) NOT NULL DEFAULT (0),
-  `subtotal` decimal(10,2) NOT NULL DEFAULT (0),
+  `unit_price` int NOT NULL DEFAULT (0),
+  `subtotal` int NOT NULL DEFAULT (0),
   `vending_id` bigint NOT NULL DEFAULT (0),
   `proceeds_id` bigint NOT NULL DEFAULT (0),
   PRIMARY KEY (`vdetail_id`),
