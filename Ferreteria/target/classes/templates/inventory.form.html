@@ -9,7 +9,7 @@
 
 <h1 class="text-3xl font-bold mb-8" th:text="${mode == 'editar'} ? 'Editar Producto' : 'Agregar Producto'">Agregar Producto</h1>
 
-<form th:action="@{/vistaE/save}" th:object="${inventory}" method="post"  class="space-y-6 max-w-2xl">
+<form th:action="@{/vistaE/save}" th:object="${proceeds}" method="post"  class="space-y-6 max-w-2xl">
     <!-- ID oculto -->
     <input type="hidden" th:field="*{inventory_id}"  required/>
 
