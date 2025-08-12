@@ -44,7 +44,7 @@ public class viewEmployee {
         if (isNew) {
             em.addFlashAttribute("success", "Empleado guardado exitosamente!");
         } else {
-            em.addFlashAttribute("success", "Empleado editado exitosamente!");
+            em.addFlashAttribute("success", "Empleado actualizado exitosamente!");
         }
 
         return "redirect:/vista/employee";

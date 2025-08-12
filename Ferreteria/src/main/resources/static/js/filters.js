@@ -21,3 +21,27 @@ function filterEmployee() {
         fila.style.display = id.includes(input) || name.includes(input) ? "" : "none";
     });
 }
+
+function filterProceeds() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const rows = document.querySelectorAll("#proceedsTable tr");
+
+    rows.forEach(fila => {
+        const columns = fila.querySelectorAll("td");
+        const id = columns[0]?.textContent?.toLowerCase() || "";
+        const name = columns[1]?.textContent?.toLowerCase() || "";
+        fila.style.display = id.includes(input) || name.includes(input) ? "" : "none";
+    });
+}
+
+function filterSuppliers() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const rows = document.querySelectorAll("#supplierTable tr");
+
+    rows.forEach(fila => {
+        const columns = fila.querySelectorAll("td");
+        const id = columns[0]?.textContent?.toLowerCase() || "";
+        const name = columns[1]?.textContent?.toLowerCase() || "";
+        fila.style.display = id.includes(input) || name.includes(input) ? "" : "none";
+    });
+}

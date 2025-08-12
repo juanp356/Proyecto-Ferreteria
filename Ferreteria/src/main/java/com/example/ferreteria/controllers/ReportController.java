@@ -68,12 +68,12 @@ public class ReportController {
 //        return buildPDF("productos", params, productos, "productos_mas_vendidos.pdf");
 //    }
 
-    @GetMapping("/products/low-stock")
-    public ResponseEntity<byte[]> reporteProductosStockBajo() throws Exception {
-        List<Proceeds> productos = proceedsRepository.findStockBajo();
-        Map<String, Object> params = Map.of("titulo", "Productos con Stock Bajo");
-        return buildPDF("productos", params, productos, "productos_stock_bajo.pdf");
-    }
+//    @GetMapping("/products/low-stock")
+//    public ResponseEntity<byte[]> reporteProductosStockBajo() throws Exception {
+//        List<Proceeds> productos = proceedsRepository.findStockBajo();
+//        Map<String, Object> params = Map.of("titulo", "Productos con Stock Bajo");
+//        return buildPDF("productos", params, productos, "productos_stock_bajo.pdf");
+//    }
 
 //    // 📌 Reporte Clientes
 //    @GetMapping("/clients/frequent")
