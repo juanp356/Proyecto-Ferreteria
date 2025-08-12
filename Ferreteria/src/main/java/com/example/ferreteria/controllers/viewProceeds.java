@@ -15,6 +15,8 @@ public class viewProceeds {
     @Autowired
     ProceedsRepository proceedsRepository;
 
+
+
     @GetMapping("/vista/proceeds")
     public String lista(Model model)
     {
@@ -22,7 +24,7 @@ public class viewProceeds {
         return "proceeds";
     }
 
-    @GetMapping("/vistaP/form")
+    @GetMapping("/vistaS/form")
     public String formulario(Model model)
     {
         model.addAttribute("proceeds", new Proceeds());
@@ -30,36 +32,35 @@ public class viewProceeds {
         return "proceeds_form";
     }
 
-    @PostMapping("/vistaP/save")
-    public String save(@ModelAttribute Proceeds proceeds, RedirectAttributes em)
+    @PostMapping("/vistaS/save")
+    public String save(@ModelAttribute Proceeds proceeds, RedirectAttributes su)
     {
-        boolean isNew = (proceeds.getProceeds_id() == null);
+        boolean isNew = (proceeds.getSupplier_id() == null);
         proceedsRepository.save(proceeds);
 
         if (isNew) {
-            em.addFlashAttribute("success", "Producto guardado exitosamente!");
+            su.addFlashAttribute("success", "Ingreso guardado exitosamente!");
         } else {
-            em.addFlashAttribute("success", "PRoducto editado exitosamente!");
+            su.addFlashAttribute("success", "Ingreso actualizado exitosamente!");
         }
 
         return "redirect:/vista/proceeds";
     }
 
-    @GetMapping("/vistaE/edit/{id}")
+    @GetMapping("/vistaS/edit/{id}")
     public String edit(@PathVariable Long id, Model model)
     {
-        Employee employee = proceedsRepository.findById(id).orElse(null);
-        model.addAttribute("proceeds",proceeds);
+        Proceeds proceeds = proceedsRepository.findById(id).orElse(null);
+        model.addAttribute("proceeds", proceeds);
         model.addAttribute("mode", "editar");
         return "proceeds_form";
     }
 
-    @PostMapping("/vistaE/delete/{id}")
-    public String delete(@PathVariable Long id, RedirectAttributes em)
+    @PostMapping("/vistaS/delete/{id}")
+    public String delete(@PathVariable Long id, RedirectAttributes su)
     {
         proceedsRepository.deleteById(id);
-        em.addFlashAttribute("success", "Producto eliminado exitosamente!");
+        su.addFlashAttribute("success", "Ingreso eliminado exitosamente!");
         return "redirect:/vista/proceeds";
     }
-
 }
