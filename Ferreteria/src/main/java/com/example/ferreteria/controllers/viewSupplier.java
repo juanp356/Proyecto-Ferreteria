@@ -10,7 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 
-public class SupplierController {
+public class viewSupplier {
 
     @Autowired
     SupplierRepository supplierRepository;
@@ -41,7 +41,7 @@ public class SupplierController {
         if (isNew) {
             su.addFlashAttribute("success", "Proveedor guardado exitosamente!");
         } else {
-            su.addFlashAttribute("success", "Proveedor editado exitosamente!");
+            su.addFlashAttribute("success", "Proveedor actualizado exitosamente!");
         }
 
         return "redirect:/vista/supplier";

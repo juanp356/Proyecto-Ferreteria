@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="max-w-6xl mx-auto">
+    <!-- Título -->
+    <h1 class="text-4xl font-bold text-gray-900 mb-8">Reportes</h1>
+
+    <!-- Métricas principales -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <!-- Ventas totales -->
+        <div class="bg-gray-100 rounded-lg p-6">
+            <h2 class="text-gray-600 text-sm mb-2">Ventas totales</h2>
+            <p class="text-3xl font-bold text-gray-900" th:text="${totalVending}">$0</p>
+        </div>
+
+        <!-- Venta promedio -->
+        <div class="bg-gray-100 rounded-lg p-6">
+            <h2 class="text-gray-600 text-sm mb-2">Venta promedio</h2>
+            <p class="text-3xl font-bold text-gray-900" th:text="${getAveragesales}">$0</p>
+        </div>
+
+        <!-- Clientes activos -->
+        <div class="bg-gray-100 rounded-lg p-6">
+            <h2 class="text-gray-600 text-sm mb-2">Clientes activos</h2>
+            <p class="text-3xl font-bold text-gray-900" th:text="${totalCustomersR}">0</p>
+        </div>
+    </div>
+
+    <!-- Reporte de ventas -->
+    <div class="mb-8">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Reporte de ventas</h2>
+        <div class="flex flex-wrap gap-4">
+            <a th:href="@{/sales/diary}" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded-full flex items-center gap-2 transition-colors">
+                <span class="text-lg">+</span>
+                Reportes diarios
+            </a>
+            <a th:href="@{/sales/weekly}" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded-full flex items-center gap-2 transition-colors">
+                <span class="text-lg">+</span>
+                Semanales
+            </a>
+            <a th:href="@{/sales/monthly}" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded-full flex items-center gap-2 transition-colors">
+                <span class="text-lg">+</span>
+                Mensuales
+            </a>
+        </div>
+    </div>
+
+    <!-- Reporte de productos -->
+    <div class="mb-8">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Reporte de productos</h2>
+        <div class="flex flex-wrap gap-4">
+            <a th:href="@{/products/best-sellers}" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded-full flex items-center gap-2 transition-colors">
+                <span class="text-lg">+</span>
+                Más vendidos
+            </a>
+            <a th:href="@{/products/low-stock}" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded-full flex items-center gap-2 transition-colors">
+                <span class="text-lg">+</span>
+                Stock bajo
+            </a>
+        </div>
+    </div>
+
+    <!-- Reporte de clientes -->
+    <div>
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Reporte de clientes</h2>
+        <div class="flex flex-wrap gap-4">
+            <a th:href="@{/clients/frequent}" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded-full flex items-center gap-2 transition-colors">
+                <span class="text-lg">+</span>
+                Clientes frecuentes
+            </a>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
