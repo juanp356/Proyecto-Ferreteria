@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+<!-- Navbar -->
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<!-- Tarjetas -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+    <div class="bg-gray-100 p-4 rounded-md text-center">
+        <p class="text-gray-600">Clientes</p>
+        <p class="text-2xl font-bold" th:text="${totalClients}">0</p>
+    </div>
+    <div class="bg-gray-100 p-4 rounded-md text-center">
+        <p class="text-gray-600">Total Ventas</p>
+        <p class="text-2xl font-bold" th:text="${totalVending}">0</p>
+    </div>
+    <div class="bg-gray-100 p-4 rounded-md text-center">
+        <p class="text-gray-600">Productos en Stock</p>
+        <p class="text-2xl font-bold" th:text="${totalProceeds}">0</p>
+    </div>
+    <div class="bg-gray-100 p-4 rounded-md text-center">
+        <p class="text-gray-600">Proveedores</p>
+        <p class="text-2xl font-bold" th:text="${totalSupplier}">0</p>
+    </div>
+</div>
+
+<!-- Gráfica -->
+<div class="border border-gray-200 rounded-md p-4">
+    <p class="text-gray-700 mb-4">Ventas Mensuales</p>
+    <canvas id="salesChart" height="100"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var labels = /*[[${labels}]]*/ [];
+    var totals = /*[[${totals}]]*/ [];
+    /*]]>*/
+
+    const ctx = document.getElementById('salesChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Ventas por mes',
+                data: totals,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return '$' + context.formattedValue;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

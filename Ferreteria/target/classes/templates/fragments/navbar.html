@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Navbar Ferrepro</title>
+</head>
+<body class="bg-gray-100">
+
+
+<!-- templates/fragments/navbar.html -->
+<nav th:fragment="navbar">
+    <div class="bg-gray-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <img src="/img/FerrePro.png" alt="Logo" class="w-6 h-6">
+                    <span class="font-bold text-lg text-gray-900">FERREPRO</span>
+                </div>
+
+                <!-- Menú -->
+                <div class="flex space-x-8 text-gray-800 font-medium">
+                    <a th:href="@{/vista/dashboard}" class="hover:text-gray-900">Inicio</a>
+                    <a th:href="@{/vista/vending}" class="hover:text-gray-900">Ventas</a>
+                    <a th:href="@{/vista/buy_order}" class="hover:text-gray-900">Orden compra</a>
+                    <a th:href="@{/vista/proceeds}" class="hover:text-gray-900">Productos</a>
+                    <a th:href="@{/vista/client}" class="hover:text-gray-900">Clientes</a>
+                    <a th:href="@{/vista/employee}" class="hover:text-gray-900">Empleados</a>
+                    <a th:href="@{/vista/supplier}" class="hover:text-gray-900">Proveedores</a>
+                    <a th:href="@{/vista/reports}" class="hover:text-gray-900">Reportes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+</body>
+</html>
