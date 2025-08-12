@@ -1,6 +1,5 @@
 package com.example.ferreteria.controllers;
 
-import com.example.ferreteria.Model.Employee;
 import com.example.ferreteria.Model.Proceeds;
 import com.example.ferreteria.Repository.ProceedsRepository;
 import org.springframework.beans.factory.annotation.Autowired;

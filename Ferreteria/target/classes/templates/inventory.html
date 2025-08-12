@@ -53,19 +53,19 @@
             </tr>
             </thead>
             <tbody id="employeeTable" class="bg-white divide-y divide-gray-100">
-            <tr th:each="employee : ${inventory}" class="hover:bg-gray-50">
-                <td class="px-4 py-3" th:text="${inventory.inventory_id}"></td>
-                <td class="px-4 py-3" th:text="${inventory.name}"></td>
-                <td class="px-4 py-3" th:text="${inventory.category}"></td>
-                <td class="px-4 py-3" th:text="${inventory.price}"></td>
-                <td class="px-4 py-3" th:text="${inventory.quantity}"></td>
-                <td class="px-4 py-3" th:text="${inventory.min_stock}"></td>
+            <tr th:each="employee : ${proceeds}" class="hover:bg-gray-50">
+                <td class="px-4 py-3" th:text="${proceeds.inventory_id}"></td>
+                <td class="px-4 py-3" th:text="${proceeds.name}"></td>
+                <td class="px-4 py-3" th:text="${proceeds.category}"></td>
+                <td class="px-4 py-3" th:text="${proceeds.price}"></td>
+                <td class="px-4 py-3" th:text="${proceeds.quantity}"></td>
+                <td class="px-4 py-3" th:text="${proceeds.min_stock}"></td>
                 <td class="px-4 py-3 text-center whitespace-nowrap">
-                    <a th:href="@{/vistaE/edit/{id}(id=${inventory.inventory_id})}"
+                    <a th:href="@{/vistaE/edit/{id}(id=${proceeds.inventory_id})}"
                        class="inline-flex items-center px-3 py-1 text-sm text-blue-600 border border-blue-600 rounded-full hover:bg-blue-100 transition">
                         <i class="fas fa-edit mr-1"></i> Editar
                     </a>
-                    <form th:action="@{/vistaE/delete/{id}(id=${inventory.inventory_id})}" method="post" class="inline delete-form">
+                    <form th:action="@{/vistaE/delete/{id}(id=${proceeds.inventory_id})}" method="post" class="inline delete-form">
                         <button type="submit"
                                 class="inline-flex items-center px-3 py-1 text-sm text-red-600 border border-red-600 rounded-full hover:bg-red-100 transition ml-2">
                             <i class="fas fa-trash-alt mr-1"></i> Eliminar
