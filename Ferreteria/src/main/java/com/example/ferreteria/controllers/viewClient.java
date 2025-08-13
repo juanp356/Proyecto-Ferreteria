@@ -46,7 +46,7 @@ public class viewClient {
         if (isNew) {
             cl.addFlashAttribute("success", "Cliente guardado exitosamente!");
         } else {
-            cl.addFlashAttribute("success", "Cliente editado exitosamente!");
+            cl.addFlashAttribute("success", "Cliente actualizado exitosamente!");
         }
 
         return "redirect:/vista/client";
