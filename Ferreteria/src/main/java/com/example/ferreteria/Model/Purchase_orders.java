@@ -6,9 +6,6 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-
-
-
 @Entity
 @Table(name = "Purchase_orders")
 public class Purchase_orders {
