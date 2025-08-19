@@ -2,63 +2,112 @@ package com.example.ferreteria.Model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "vending")
 
 public class Vending {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="vending_id")
+    private Long id;
 
-        private Long vending_id;
-        private int total_amount;
-        private Date vending_date;
-        @ManyToOne
-        @JoinColumn(name = "client_id")
-        private  Client client_id;
-        @ManyToOne
-        @JoinColumn(name = "employee_id")
-        private Employee employee_id;
+    @Column(name="total_amount")
+    private Integer totalAmount; // si tu columna es INT según captura (total en centavos)
+    @Column(name="vending_date")
+    private LocalDateTime vendingDate = LocalDateTime.now();
 
-    public Long getVending_id() {
-        return vending_id;
+    @ManyToOne
+    @JoinColumn(name="client_id")
+    private Client client;
+    @ManyToOne
+    @JoinColumn(name="employee_id")
+    private Employee employee;
+
+    // Extras no persistidos en tu esquema original pero útiles:
+    @Transient
+    private BigDecimal subtotal; // calculado
+    @Enumerated(EnumType.STRING)
+    @Column(length=12)
+    private Status status = Status.COMPLETED; // COMPLETED / CANCELED
+
+    @OneToMany(mappedBy="vending", cascade=CascadeType.ALL, orphanRemoval=true)
+    private List<VendingDetail> details = new ArrayList<>();
+
+    public enum Status { COMPLETED, CANCELED }
+
+    // helpers
+    public BigDecimal getTotalAsMoney() {
+        return new BigDecimal(totalAmount).movePointLeft(2); // si guardas en centavos
     }
 
-    public void setVending_id(Long vending_id) {
-        this.vending_id = vending_id;
+    public Long getId() {
+        return id;
     }
 
-    public int getTotal_amount() {
-        return total_amount;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setTotal_amount(int total_amount) {
-        this.total_amount = total_amount;
+    public Integer getTotalAmount() {
+        return totalAmount;
     }
 
-    public Date getVending_date() {
-        return vending_date;
+    public void setTotalAmount(Integer totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
-    public void setVending_date(Date vending_date) {
-        this.vending_date = vending_date;
+    public LocalDateTime getVendingDate() {
+        return vendingDate;
     }
 
-    public Client getClient_id() {
-        return client_id;
+    public void setVendingDate(LocalDateTime vendingDate) {
+        this.vendingDate = vendingDate;
     }
 
-    public void setClient_id(Client client_id) {
-        this.client_id = client_id;
+    public Client getClient() {
+        return client;
     }
 
-    public Employee getEmployee_id() {
-        return employee_id;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public void setEmployee_id(Employee employee_id) {
-        this.employee_id = employee_id;
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public BigDecimal getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(BigDecimal subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public List<VendingDetail> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<VendingDetail> details) {
+        this.details = details;
     }
 }
