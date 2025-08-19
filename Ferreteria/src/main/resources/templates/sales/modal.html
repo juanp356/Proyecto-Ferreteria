@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!-- Fragmento del modal de detalles -->
+<div th:fragment="content">
+    <div class="border-b pb-4 mb-4">
+        <h3 class="text-lg font-semibold">Detalle de Venta #<span th:text="${sale.id}"></span></h3>
+        <p class="text-sm text-gray-600" th:text="${#temporals.format(sale.vendingDate, 'yyyy-MM-dd HH:mm:ss')}"></p>
+    </div>
+
+    <!-- Información de la venta -->
+    <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Cliente</label>
+            <p th:text="${sale.client != null ? sale.client.name : 'Consumidor final'}"></p>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Empleado</label>
+            <p th:text="${sale.employee != null ? sale.employee.name : 'N/A'}"></p>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Estado</label>
+            <p th:if="${sale.status != null}"
+               th:text="${sale.status.name() == 'CANCELED' ? 'CANCELADO' : (sale.status.name() == 'COMPLETED' ? 'COMPLETADO' : sale.status.name())}"
+               th:class="${sale.status != null and sale.status.name() == 'CANCELED' ? 'text-red-600 font-medium' : 'text-emerald-700 font-medium'}">
+            </p>
+            <p th:unless="${sale.status != null}" class="text-emerald-700 font-medium">COMPLETADO</p>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Total</label>
+            <p class="font-bold text-lg" th:text="${'$' + #numbers.formatInteger(sale.totalAmount, 1, 'COMMA')}"></p>
+        </div>
+    </div>
+
+    <!-- Items de la venta (si tienes esta información disponible) -->
+    <div th:if="${sale.details != null and !#lists.isEmpty(sale.details)}">
+        <h4 class="font-medium mb-2">Productos vendidos:</h4>
+        <div class="bg-gray-50 rounded-lg p-3">
+            <div th:each="item : ${sale.details}" class="flex justify-between py-1">
+                <span th:text="${item.proceeds.name + ' x' + item.quantity}"></span>
+                <span th:text="${'$' + #numbers.formatInteger(item.subtotal, 1, 'COMMA')}"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Información de pago -->
+    <div th:if="${sale.totalAmount != null}" class="mt-4 bg-gray-50 rounded-lg p-3">
+        <div class="flex justify-between">
+            <span>Subtotal:</span>
+            <span th:text="${'$' + #numbers.formatInteger(sale.totalAmount, 1, 'COMMA')}"></span>
+        </div>
+        <div class="flex justify-between">
+            <span>Total:</span>
+            <span th:text="${'$' + #numbers.formatInteger(sale.totalAmount, 1, 'COMMA')}"></span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
