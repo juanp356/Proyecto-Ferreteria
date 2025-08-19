@@ -34,13 +34,13 @@ public class ReportController {
         this.reportService = reportService;
     }
 
-    // 📌 Reporte Ventas
-    @GetMapping("/sales/diary")
-    public ResponseEntity<byte[]> reporteVentasDiarias() throws Exception {
-        List<Vending> ventas = vendingRepository.findByDate(LocalDate.now());
-        Map<String, Object> params = Map.of("titulo", "Reporte de Ventas Diarias");
-        return buildPDF("ventas", params, ventas, "ventas_diarias.pdf");
-    }
+//    // 📌 Reporte Ventas
+//    @GetMapping("/sales/diary")
+//    public ResponseEntity<byte[]> reporteVentasDiarias() throws Exception {
+//        List<Vending> ventas = vendingRepository.findByDate(LocalDate.now());
+//        Map<String, Object> params = Map.of("titulo", "Reporte de Ventas Diarias");
+//        return buildPDF("ventas", params, ventas, "ventas_diarias.pdf");
+//    }
 
 //    @GetMapping("/sales/weekly")
 //    public ResponseEntity<byte[]> reporteVentasSemanales() throws Exception {
@@ -83,12 +83,11 @@ public class ReportController {
 //        return buildPDF("clientes", params, clientes, "clientes_frecuentes.pdf");
 //    }
 
-    // Método genérico para generar PDF
-    private ResponseEntity<byte[]> buildPDF(String plantilla, Map<String, Object> params, List<?> datos, String nombreArchivo) throws Exception {
-        byte[] pdf = reportService.exportarPDF(plantilla, params, datos);
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + nombreArchivo)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(pdf);
+//    // Método genérico para generar PDF
+//    private ResponseEntity<byte[]> buildPDF(String plantilla, Map<String, Object> params, List<?> datos, String nombreArchivo) throws Exception {
+//        byte[] pdf = reportService.exportarPDF(plantilla, params, datos);
+//        return ResponseEntity.ok()
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + nombreArchivo)
+//                .contentType(MediaType.APPLICATION_PDF)
+//                .body(pdf);
     }
-}

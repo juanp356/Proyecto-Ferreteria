@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="content">
+    <div class="p-4">
+        <h3>PRUEBA - Detalle de Venta</h3>
+        <p>ID: <span th:text="${sale.id}">N/A</span></p>
+        <p>Total: <span th:text="${sale.totalAmount}">N/A</span></p>
+        <p>Este es contenido de prueba</p>
+    </div>
+</div>
+
+</body>
+</html>
