@@ -21,6 +21,8 @@ public class viewProceeds {
     @Autowired
      SupplierRepository supplierRepository;
 
+
+
     @GetMapping("/vista/proceeds")
     public String lista(Model model)
     {
@@ -28,7 +30,7 @@ public class viewProceeds {
         return "proceeds";
     }
 
-    @GetMapping("/vistaP/form")
+    @GetMapping("/vistaS/form")
     public String formulario(Model model)
     {
         model.addAttribute("supplier",supplierRepository.findAll());
@@ -37,38 +39,35 @@ public class viewProceeds {
         return "proceeds_form";
     }
 
-    @PostMapping("/vistaP/save")
-    public String save(@ModelAttribute Proceeds proceeds, RedirectAttributes pr)
+    @PostMapping("/vistaS/save")
+    public String save(@ModelAttribute Proceeds proceeds, RedirectAttributes su)
     {
-        boolean isNew = (proceeds.getProceeds_id() == null);
+        boolean isNew = (proceeds.getSupplier_id() == null);
         proceedsRepository.save(proceeds);
 
         if (isNew) {
-            pr.addFlashAttribute("success", "Producto guardado exitosamente!");
+            su.addFlashAttribute("success", "Ingreso guardado exitosamente!");
         } else {
-            pr.addFlashAttribute("success", "Producto actualizado exitosamente!");
+            su.addFlashAttribute("success", "Ingreso actualizado exitosamente!");
         }
 
         return "redirect:/vista/proceeds";
     }
 
-    @GetMapping("/vistaP/edit/{id}")
+    @GetMapping("/vistaS/edit/{id}")
     public String edit(@PathVariable Long id, Model model)
     {
-        model.addAttribute("supplier",supplierRepository.findAll());
         Proceeds proceeds = proceedsRepository.findById(id).orElse(null);
         model.addAttribute("proceeds", proceeds);
         model.addAttribute("mode", "editar");
         return "proceeds_form";
     }
 
-    @PostMapping("/vistaP/delete/{id}")
-    public String delete(@PathVariable Long id, RedirectAttributes em)
+    @PostMapping("/vistaS/delete/{id}")
+    public String delete(@PathVariable Long id, RedirectAttributes su)
     {
         proceedsRepository.deleteById(id);
-        em.addFlashAttribute("success", "Producto eliminado exitosamente!");
+        su.addFlashAttribute("success", "Ingreso eliminado exitosamente!");
         return "redirect:/vista/proceeds";
     }
-
-
 }

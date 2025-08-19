@@ -3,6 +3,10 @@ package com.example.ferreteria.Model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "client")
 public class Client {
@@ -15,6 +19,25 @@ public class Client {
     private String phone;
     private String address;
     private String email;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Purchase_orders> orders = new ArrayList<>();
+
+    public void agregarOrder(Purchase_orders order) {
+        this.orders.add(order);
+        order.setClient(this);
+    }
+
+    public int getTotalOrders() {
+        return this.orders.size();
+    }
+
+    public BigDecimal getTotalGastado() {
+        return this.orders.stream()
+                .map(Purchase_orders::getTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
 
     public Long getClient_id() {
         return client_id;
